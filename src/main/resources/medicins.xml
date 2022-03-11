@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<medicins xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="medications.xsd">
+    <medicine-group id="111222">
+        <name>Tramadol</name>
+        <pharm>Ultram</pharm>
+        <group>Painkiller</group>
+        <analogs></analogs>
+    </medicine-group>
+</medicins>
