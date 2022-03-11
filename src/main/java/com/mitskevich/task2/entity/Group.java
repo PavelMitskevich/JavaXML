@@ -16,20 +16,6 @@ public enum Group {
     @XmlEnumValue("Antiviral")
     ANTIVIRAL("Antiviral");
 
-
-//    @XmlEnumValue("Tranquilizer")
-//    TRANQUILIZER("Tranquilizer"),
-//    @XmlEnumValue("Hypnotic")
-//    HYPNOTIC("Hypnotic"),
-//    @XmlEnumValue("Radiopaque")
-//    RADIOPAQUE("Radiopaque"),
-//    @XmlEnumValue("Hormonal")
-//    HORMONAL("Hormonal"),
-//    @XmlEnumValue("Antidiabetic")
-//    ANTIDIABETIC("Antidiabetic"),
-//    @XmlEnumValue("Parasiticide")
-//    PARASITICIDE("Parasiticide");
-
     private String name;
 
     Group(String name) {
