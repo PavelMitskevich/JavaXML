@@ -2,7 +2,7 @@ package com.mitskevich.task2.entity;
 
 import java.util.List;
 
-public class Antibiotic extends AbstractMedicine{
+public class Antibiotic extends AbstractMedicine {
     private Group group = Group.ANTIBIOTIC;
 
     public Antibiotic() {
