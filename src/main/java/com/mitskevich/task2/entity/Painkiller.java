@@ -2,14 +2,19 @@ package com.mitskevich.task2.entity;
 
 import java.util.List;
 
-public class Antibiotic extends AbstractMedicine{
-    private Group group = Group.ANTIBIOTIC;
+public class Painkiller extends AbstractMedicine {
+    private Group group = Group.PAINKILLER;
 
-    public Antibiotic() {
+    public Painkiller() {
     }
 
-    public Antibiotic(String name, String pharm, List<String> analogs, List<Version> versions) {
+    public Painkiller(String name, String pharm, List<String> analogs, List<Version> versions, Group group) {
         super(name, pharm, analogs, versions);
+        this.group = group;
+    }
+
+    public Group getGroup() {
+        return Group.valueOf(group.getName());
     }
 
     @Override
