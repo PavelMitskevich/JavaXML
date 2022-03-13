@@ -32,35 +32,111 @@
             <element ref="expiration-date"/>
         </sequence>
     </complexType>
-<!---->
-    <complexType name="caramel-candy-type">
+
+    <complexType name="antibiotic">
         <complexContent>
-            <extension base="candy-type">
+            <extension base="medicine">
                 <sequence>
-                    <element name="flavor" type="string"/>
-                    <element name="lollipop" type="boolean"/>
+                    <element name="group" type="string"/>
                 </sequence>
+                <attribute name="prescription" type="boolean" use="optional" default="without"/>
+                <attribute name="pharm" type="string" use="required"/>
             </extension>
         </complexContent>
     </complexType>
 
-    <complexType name="chocolate-candy-type">
+    <complexType name="antiviral">
         <complexContent>
-            <extension base="candy-type">
+            <extension base="medicine">
                 <sequence>
-                    <element ref="chocolate-type"/>
+                    <element name="group" type="string"/>
                 </sequence>
-                <attribute name="filling" type="string" use="optional" default="without"/>
+                <attribute name="antiviral-group" type="string" use="optional" default="universal"/>
+                <attribute name="pharm" type="string" use="required"/>
             </extension>
         </complexContent>
     </complexType>
 
-    <element name="candy" type="candy-type" abstract="true"/>
+    <complexType name="painkiller">
+        <complexContent>
+            <extension base="medicine">
+                <sequence>
+                    <element name="group" type="string"/>
+                </sequence>
+                <attribute name="power" type="string" use="optional" default="lite"/>
+                <attribute name="pharm" type="string" use="required"/>
+            </extension>
+        </complexContent>
+    </complexType>
 
-    <element name="caramel-candy" type="caramel-candy-type" substitutionGroup="candy"/>
+    <complexType name="vitamin">
+        <complexContent>
+            <extension base="medicine">
+                <sequence>
+                    <element name="group" type="string"/>
+                </sequence>
+                <attribute name="taste" type="string" use="optional" default="without"/>
+                <attribute name="pharm" type="string" use="required"/>
+            </extension>
+        </complexContent>
+    </complexType>
 
-    <element name="chocolate-candy" type="chocolate-candy-type" substitutionGroup="candy"/>
-<!--    -->
+
+    <element name="medicine" type="medicine-type" abstract="false"/>
+
+    <element name="antibiotic" type="antibiotic-type" substitutionGroup="medicine"/>
+
+    <element name="antiviral" type="antiviral-type" substitutionGroup="medicine"/>
+
+    <element name="painkiller" type="painkiller-type" substitutionGroup="medicine"/>
+
+    <element name="vitamin" type="vitamin-type" substitutionGroup="medicine"/>
+
+
+    <element name="version">
+        <complexType>
+            <sequence>
+                <element name="execution" type="string"/>
+                <element name="certificate">
+                    <complexType>
+                        <sequence>
+                            <element ref="certificate"/>
+                        </sequence>
+                    </complexType>
+                </element>
+                <element name="package-of-medicine">
+                    <complexType>
+                        <sequence>
+                            <element ref="package-of-medicine"/>
+                        </sequence>
+                    </complexType>
+                </element>
+                <element name="dosage">
+                    <complexType>
+                        <sequence>
+                            <element ref="dosage"/>
+                        </sequence>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="certificate">
+        <complexType>
+            <sequence>
+                <element name="registration-number" type="int"/>
+                <element name="registering-organization" type="string"/>
+                <element name="expiration-date">
+                    <complexType>
+                        <sequence>
+                            <element ref="expiration-date"/>
+                        </sequence>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
 
     <element name="dosage">
         <complexType>

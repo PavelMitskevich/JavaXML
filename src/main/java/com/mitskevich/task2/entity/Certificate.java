@@ -2,8 +2,8 @@ package com.mitskevich.task2.entity;
 
 public class Certificate {
     private int regNumber;
-    private ExpirationDate expirationDate;
     private String registeringOrganization;
+    private ExpirationDate expirationDate;
 
     public Certificate(int regNumber, ExpirationDate expirationDate, String registeringOrganization) {
         this.regNumber = regNumber;
