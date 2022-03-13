@@ -1,21 +1,21 @@
 package com.mitskevich.task2.entity;
 
 public class Certificate {
-    private String regNumber;
+    private int regNumber;
     private ExpirationDate expirationDate;
     private String registeringOrganization;
 
-    public Certificate(String regNumber, ExpirationDate expirationDate, String registeringOrganization) {
+    public Certificate(int regNumber, ExpirationDate expirationDate, String registeringOrganization) {
         this.regNumber = regNumber;
         this.expirationDate = expirationDate;
         this.registeringOrganization = registeringOrganization;
     }
 
-    public String getRegNumber() {
+    public int getRegNumber() {
         return regNumber;
     }
 
-    public void setRegNumber(String regNumber) {
+    public void setRegNumber(int regNumber) {
         this.regNumber = regNumber;
     }
 

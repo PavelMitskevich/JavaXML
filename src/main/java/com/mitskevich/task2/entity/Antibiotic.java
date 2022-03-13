@@ -8,8 +8,14 @@ public class Antibiotic extends AbstractMedicine {
     public Antibiotic() {
     }
 
-    public Antibiotic(String name, String pharm, List<String> analogs, List<Version> versions) {
-        super(name, pharm, analogs, versions);
+    public Antibiotic(String name, String pharm, List<String> analogs, List<Version> versions, Group group) {
+        super(name, pharm, analogs, versions, group);
+        this.group = group;
+    }
+
+    @Override
+    public Group getGroup() {
+        return super.getGroup();
     }
 
     @Override

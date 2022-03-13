@@ -7,15 +7,21 @@ public abstract class AbstractMedicine {
     private String pharm;
     private List<String> analogs;
     private List<Version> versions;
+    private Group group;
 
     public AbstractMedicine() {
     }
 
-    public AbstractMedicine(String name, String pharm, List<String> analogs, List<Version> versions) {
+    public AbstractMedicine(String name, String pharm, List<String> analogs, List<Version> versions, Group group) {
         this.name = name;
         this.pharm = pharm;
         this.analogs = analogs;
         this.versions = versions;
+        this.group = group;
+    }
+
+    public Group getGroup() {
+        return group;
     }
 
     public String getName() {
