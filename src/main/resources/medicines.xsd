@@ -1,186 +1,120 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:noNamespaceSchemaLocation="medicines.xsd">
-    <complexType name="medicine">
-        <sequence>
-            <element name="name">
-                <restriction base="string">
-                    <minLength value="2"/>
-                    <maxLength value="128"/>
-                </restriction>
-            </element>
-            <element ref="group"/>
-            <element name="pharm">
-                <restriction base="string">
-                    <minLength value="2"/>
-                    <maxLength value="128"/>
-                </restriction>
-            </element>
-            <element name="analogs">
-                <simpleType>
-                    <sequence>
-                        <element ref="analogs" maxOccurs="unbounded"/>
-                    </sequence>
-                </simpleType>
-            </element>
-            <element name="versions">
-                <complexType>
-                    <sequence>
-                        <element ref="versions" minIccurs="1" maxOccurs="5"/>
-                    </sequence>
-                </complexType>
-            </element>
-            <element ref="expiration-date"/>
-        </sequence>
-    </complexType>
-
-    <complexType name="antibiotic">
-        <complexContent>
-            <extension base="medicine">
-                <sequence>
-                    <element name="group" type="string"/>
-                </sequence>
-                <attribute name="prescription" type="boolean" use="optional" default="without"/>
-                <attribute name="pharm" type="string" use="required"/>
-            </extension>
-        </complexContent>
-    </complexType>
-
-    <complexType name="antiviral">
-        <complexContent>
-            <extension base="medicine">
-                <sequence>
-                    <element name="group" type="string"/>
-                </sequence>
-                <attribute name="antiviral-group" type="string" use="optional" default="universal"/>
-                <attribute name="pharm" type="string" use="required"/>
-            </extension>
-        </complexContent>
-    </complexType>
-
-    <complexType name="painkiller">
-        <complexContent>
-            <extension base="medicine">
-                <sequence>
-                    <element name="group" type="string"/>
-                </sequence>
-                <attribute name="power" type="string" use="optional" default="lite"/>
-                <attribute name="pharm" type="string" use="required"/>
-            </extension>
-        </complexContent>
-    </complexType>
-
-    <complexType name="vitamin">
-        <complexContent>
-            <extension base="medicine">
-                <sequence>
-                    <element name="group" type="string"/>
-                </sequence>
-                <attribute name="taste" type="string" use="optional" default="without"/>
-                <attribute name="pharm" type="string" use="required"/>
-            </extension>
-        </complexContent>
-    </complexType>
-
-
-    <element name="medicine" type="medicine-type" abstract="false"/>
-
-    <element name="antibiotic" type="antibiotic-type" substitutionGroup="medicine"/>
-
-    <element name="antiviral" type="antiviral-type" substitutionGroup="medicine"/>
-
-    <element name="painkiller" type="painkiller-type" substitutionGroup="medicine"/>
-
-    <element name="vitamin" type="vitamin-type" substitutionGroup="medicine"/>
-
-
-    <element name="version">
-        <complexType>
-            <sequence>
-                <element name="execution" type="string"/>
-                <element name="certificate">
-                    <complexType>
-                        <sequence>
-                            <element ref="certificate"/>
-                        </sequence>
-                    </complexType>
-                </element>
-                <element name="package-of-medicine">
-                    <complexType>
-                        <sequence>
-                            <element ref="package-of-medicine"/>
-                        </sequence>
-                    </complexType>
-                </element>
-                <element name="dosage">
-                    <complexType>
-                        <sequence>
-                            <element ref="dosage"/>
-                        </sequence>
-                    </complexType>
-                </element>
-            </sequence>
-        </complexType>
-    </element>
-
-    <element name="certificate">
-        <complexType>
-            <sequence>
-                <element name="registration-number" type="int"/>
-                <element name="registering-organization" type="string"/>
-                <element name="expiration-date">
-                    <complexType>
-                        <sequence>
-                            <element ref="expiration-date"/>
-                        </sequence>
-                    </complexType>
-                </element>
-            </sequence>
-        </complexType>
-    </element>
-
-    <element name="dosage">
-        <complexType>
-            <sequence>
-                <element name="value-of-dosage" type="double"/>
-                <element name="frequency-of-admission" type="int"/>
-            </sequence>
-        </complexType>
-    </element>
-
-    <element name="package-of-medicine">
-        <complexType>
-            <sequence>
-                <element name="type" type="string"/>
-                <element name="count" type="int"/>
-                <element name="price" type="double"/>
-            </sequence>
-        </complexType>
-    </element>
-
-    <element name="group">
-        <simpleType>
-            <restriction base="string">
-                <enumeration value="Antibiotic"/>
-                <enumeration value="Painkiller"/>
-                <enumeration value="Vitamin"/>
-                <enumeration value="Antiviral"/>
-            </restriction>
-        </simpleType>
-    </element>
-
-    <element name="expiration-date">
-        <simpleType>
-            <restriction base="gYearMonth">
-                <pattern value="2[0-9][0-9][0-9]-(0[1-9])|(1[0-2])"/>
-            </restriction>
-        </simpleType>
-    </element>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/medicines"
+        xmlns:tns="http://www.example.org/medicines"
+        elementFormDefault="qualified">
 
     <element name="medicines">
         <complexType>
             <sequence>
-                <element ref="medicine" maxOccurs="unbounded"/>
+                <element ref="tns:medicine" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>
+
+    <element name="medicine" type="tns:Medicine" abstract="true"/>
+    <element name="antibiotic" type="tns:Antibiotic" substitutionGroup="tns:medicine"/>
+    <element name="antiviral" type="tns:Antiviral" substitutionGroup="tns:medicine"/>
+    <element name="painkiller" type="tns:Painkiller" substitutionGroup="tns:medicine"/>
+    <element name="vitamin" type="tns:Vitamin" substitutionGroup="tns:medicine"/>
+
+    <complexType name="Medicine">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="pharm" type="string"/>
+            <element name="analogs" type="tns:stringList"/>
+            <element name="versions">
+                <complexType>
+                    <sequence>
+                        <element name="version" type="tns:Version" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="expiration-date-of-medicine" type="gYearMonth"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Antibiotic">
+        <complexContent>
+            <extension base="tns:Medicine">
+                <sequence>
+                    <element name="prescription" type="boolean"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Antiviral">
+        <complexContent>
+            <extension base="tns:Medicine">
+                <sequence>
+                    <element name="antiviral-group" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Painkiller">
+        <complexContent>
+            <extension base="tns:Medicine">
+                <sequence>
+                    <element name="power" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Vitamin">
+        <complexContent>
+            <extension base="tns:Medicine">
+                <sequence>
+                    <element name="taste" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Version">
+        <sequence>
+            <element name="execution" type="string"/>
+            <element name="certificate" type="tns:Certificate"/>
+            <element name="package-of-medicine" type="string"/>
+            <element name="dosage" type="string"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Certificate">
+        <sequence>
+            <element name="registration-number" type="int"/>
+            <element name="registering-organization" type="string"/>
+            <element name="expiration-date" type="tns:Expiration-date"/>
+            <element name="dosage" type="tns:Dosage"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Expiration-date">
+        <sequence>
+            <element name="start-date" type="gYearMonth"/>
+            <element name="end-date" type="gYearMonth"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Package-of-medicine">
+        <sequence>
+            <element name="type" type="string"/>
+            <element name="count" type="int"/>
+            <element name="price" type="double"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Dosage">
+        <sequence>
+            <element name="value-of-dosage" type="double"/>
+            <element name="frequency-of-admission" type="int"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="stringList">
+        <list itemType="string"/>
+    </simpleType>
+
 </schema>

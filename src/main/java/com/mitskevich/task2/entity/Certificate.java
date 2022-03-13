@@ -1,22 +1,22 @@
 package com.mitskevich.task2.entity;
 
 public class Certificate {
-    private int regNumber;
+    private int registrationNumber;
     private String registeringOrganization;
     private ExpirationDate expirationDate;
 
-    public Certificate(int regNumber, ExpirationDate expirationDate, String registeringOrganization) {
-        this.regNumber = regNumber;
+    public Certificate(int registrationNumber, ExpirationDate expirationDate, String registeringOrganization) {
+        this.registrationNumber = registrationNumber;
         this.expirationDate = expirationDate;
         this.registeringOrganization = registeringOrganization;
     }
 
-    public int getRegNumber() {
-        return regNumber;
+    public int getRegistrationNumber() {
+        return registrationNumber;
     }
 
-    public void setRegNumber(int regNumber) {
-        this.regNumber = regNumber;
+    public void setRegistrationNumber(int registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 
     public ExpirationDate getExpirationDate() {
@@ -38,7 +38,7 @@ public class Certificate {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Certificate{");
-        sb.append("regNumber='").append(regNumber).append('\'');
+        sb.append("regNumber='").append(registrationNumber).append('\'');
         sb.append(", expirationDate=").append(expirationDate);
         sb.append(", registeringOrganization='").append(registeringOrganization).append('\'');
         sb.append('}');

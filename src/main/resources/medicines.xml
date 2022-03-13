@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<medicine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:noNamespaceSchemaLocation="medicines.xsd">
-    <!--    <antibiotic>-->
-    <!--        -->
-    <!--    </antibiotic>-->
-
-</medicine>
+<medicines xmlns="http://www.example.org/medicines"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.example.org/medicines medicines.xsd">
+    <antibiotic>
+        <name>Ant</name>
+        <pharm>da</pharm>
+        <analogs>sad asd qwe</analogs>
+        <versions>
+            <version>
+                <execution>1</execution>
+                <certificate>
+                    <registration-number>1</registration-number>
+                    <registering-organization>asddd</registering-organization>
+                    <expiration-date>
+                        <start-date>2010-01</start-date>
+                        <end-date>2025-10</end-date>
+                    </expiration-date>
+                    <dosage>
+                        <value-of-dosage>0.5</value-of-dosage>
+                        <frequency-of-admission>3</frequency-of-admission>
+                    </dosage>
+                </certificate>
+                <package-of-medicine>3</package-of-medicine>
+                <dosage>4</dosage>
+            </version>
+                    </versions>
+        <expiration-date-of-medicine>2022-09</expiration-date-of-medicine>
+        <prescription>true</prescription>
+    </antibiotic>
+</medicines>
