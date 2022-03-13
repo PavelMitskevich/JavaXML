@@ -1,16 +1,30 @@
 package com.mitskevich.task2.entity;
 
+import java.time.YearMonth;
 import java.util.List;
 
 public class Antiviral extends AbstractMedicine {
     private Group group = Group.ANTIVIRAL;
 
     public Antiviral() {
-        super();
     }
 
-    public Antiviral(String name, String pharm, List<String> analogs, List<Version> versions) {
-        super(name, pharm, analogs, versions);
+    public Antiviral(String name, String pharm, List<String> analogs, List<Version> versions, YearMonth expirationDateOfMedicine) {
+        super(name, pharm, analogs, versions, expirationDateOfMedicine);
+    }
+
+    @Override
+    public YearMonth getExpirationDateOfMedicine() {
+        return super.getExpirationDateOfMedicine();
+    }
+
+    @Override
+    public void setExpirationDateOfMedicine(YearMonth expirationDateOfMedicine) {
+        super.setExpirationDateOfMedicine(expirationDateOfMedicine);
+    }
+
+    public Group getGroup() {
+        return group;
     }
 
     @Override
@@ -51,5 +65,12 @@ public class Antiviral extends AbstractMedicine {
     @Override
     public void setVersions(List<Version> versions) {
         super.setVersions(versions);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder(String.valueOf(getGroup()));
+        sb.append(super.toString());
+        return sb.toString();
     }
 }

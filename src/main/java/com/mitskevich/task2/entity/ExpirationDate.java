@@ -1,29 +1,29 @@
 package com.mitskevich.task2.entity;
 
-import java.time.LocalDate;
+import java.time.YearMonth;
 
 public class ExpirationDate {
-   private LocalDate startDate;
-   private LocalDate endDate;
+    private YearMonth startDate;
+    private YearMonth endDate;
 
-    public ExpirationDate(LocalDate startDate, LocalDate endDate) {
+    public ExpirationDate(YearMonth startDate, YearMonth endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public LocalDate getStartDate() {
+    public YearMonth getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(YearMonth startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public YearMonth getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(YearMonth endDate) {
         this.endDate = endDate;
     }
 

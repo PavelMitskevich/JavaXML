@@ -1,5 +1,6 @@
 package com.mitskevich.task2.entity;
 
+import java.time.YearMonth;
 import java.util.List;
 
 public abstract class AbstractMedicine {
@@ -7,21 +8,25 @@ public abstract class AbstractMedicine {
     private String pharm;
     private List<String> analogs;
     private List<Version> versions;
-    private Group group;
+    private YearMonth expirationDateOfMedicine;
 
     public AbstractMedicine() {
     }
 
-    public AbstractMedicine(String name, String pharm, List<String> analogs, List<Version> versions, Group group) {
+    public AbstractMedicine(String name, String pharm, List<String> analogs, List<Version> versions, YearMonth expirationDateOfMedicine) {
         this.name = name;
         this.pharm = pharm;
         this.analogs = analogs;
         this.versions = versions;
-        this.group = group;
+        this.expirationDateOfMedicine = expirationDateOfMedicine;
     }
 
-    public Group getGroup() {
-        return group;
+    public YearMonth getExpirationDateOfMedicine() {
+        return expirationDateOfMedicine;
+    }
+
+    public void setExpirationDateOfMedicine(YearMonth expirationDateOfMedicine) {
+        this.expirationDateOfMedicine = expirationDateOfMedicine;
     }
 
     public String getName() {
@@ -54,5 +59,17 @@ public abstract class AbstractMedicine {
 
     public void setVersions(List<Version> versions) {
         this.versions = versions;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("{name='").append(name).append('\'');
+        sb.append(", pharm='").append(pharm).append('\'');
+        sb.append(", analogs=").append(analogs);
+        sb.append(", versions=").append(versions);
+        sb.append(", expirationDateOfMedicine=").append(expirationDateOfMedicine);
+        sb.append('}');
+        return sb.toString();
     }
 }

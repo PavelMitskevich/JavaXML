@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:noNamespaceSchemaLocation="medications.xsd">
-    <complexType name="Medicine">
+    <complexType name="medicine">
         <sequence>
-            <element name="name"
+            <element name="name">
+                <restriction base="string">
+                    <minLength value="2"/>
+                    <maxLength value="128"/>
+                </restriction>
+            </element>
+            <element ref="group"/>
+            <element ref="expiration-date"/>
+            <element name="analogs">
+                <complexType>
+                    <sequence>
+                        <element ref="analogs" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="versions">
+                <complexType>
+                    <sequence>
+                        <element ref="versions" minIccurs="1" maxOccurs="5"/>
+                    </sequence>
+                </complexType>
+            </element>
         </sequence>
     </complexType>
 </schema>
