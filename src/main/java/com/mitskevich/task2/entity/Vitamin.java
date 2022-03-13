@@ -5,12 +5,14 @@ import java.util.List;
 
 public class Vitamin extends AbstractMedicine {
     private Group group = Group.VITAMIN;
+    private String taste;
 
     public Vitamin() {
     }
 
-    public Vitamin(String name, String pharm, List<String> analogs, List<Version> versions, YearMonth expirationDateOfMedicine) {
+    public Vitamin(String name, String pharm, List<String> analogs, List<Version> versions, YearMonth expirationDateOfMedicine, String taste) {
         super(name, pharm, analogs, versions, expirationDateOfMedicine);
+        this.taste = taste;
     }
 
     @Override
@@ -67,10 +69,19 @@ public class Vitamin extends AbstractMedicine {
         super.setVersions(versions);
     }
 
+    public String getTaste() {
+        return taste;
+    }
+
+    public void setTaste(String taste) {
+        this.taste = taste;
+    }
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder(String.valueOf(getGroup()));
         sb.append(super.toString());
+        sb.append(", taste=").append(taste);
+        sb.append('}');
         return sb.toString();
     }
 }

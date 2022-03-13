@@ -34,4 +34,14 @@ public class PackageOfMedicine {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("PackageOfMedicine{");
+        sb.append("type='").append(type).append('\'');
+        sb.append(", count=").append(count);
+        sb.append(", price=").append(price);
+        sb.append('}');
+        return sb.toString();
+    }
 }

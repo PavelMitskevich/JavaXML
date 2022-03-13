@@ -5,12 +5,14 @@ import java.util.List;
 
 public class Painkiller extends AbstractMedicine {
     private Group group = Group.PAINKILLER;
+    private String power;
 
     public Painkiller() {
     }
 
-    public Painkiller(String name, String pharm, List<String> analogs, List<Version> versions, YearMonth expirationDateOfMedicine) {
+    public Painkiller(String name, String pharm, List<String> analogs, List<Version> versions, YearMonth expirationDateOfMedicine, String power) {
         super(name, pharm, analogs, versions, expirationDateOfMedicine);
+        this.power = power;
     }
 
     @Override
@@ -67,10 +69,20 @@ public class Painkiller extends AbstractMedicine {
         super.setVersions(versions);
     }
 
+    public String getPower() {
+        return power;
+    }
+
+    public void setPower(String power) {
+        this.power = power;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder(String.valueOf(getGroup()));
         sb.append(super.toString());
+        sb.append(", power=").append(power);
+        sb.append('}');
         return sb.toString();
     }
 }

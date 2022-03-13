@@ -47,4 +47,15 @@ public class Version {
     public void setDosage(Dosage dosage) {
         this.dosage = dosage;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Version{");
+        sb.append("execution='").append(execution).append('\'');
+        sb.append(", certificate=").append(certificate);
+        sb.append(", packageOfMedicine=").append(packageOfMedicine);
+        sb.append(", dosage=").append(dosage);
+        sb.append('}');
+        return sb.toString();
+    }
 }

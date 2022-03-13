@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:noNamespaceSchemaLocation="medications.xsd">
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema" xsi:noNamespaceSchemaLocation="medicines.xsd">
     <complexType name="medicine">
         <sequence>
             <element name="name">
@@ -9,13 +9,18 @@
                 </restriction>
             </element>
             <element ref="group"/>
-            <element ref="expiration-date"/>
+            <element name="pharm">
+                <restriction base="string">
+                    <minLength value="2"/>
+                    <maxLength value="128"/>
+                </restriction>
+            </element>
             <element name="analogs">
-                <complexType>
+                <simpleType>
                     <sequence>
                         <element ref="analogs" maxOccurs="unbounded"/>
                     </sequence>
-                </complexType>
+                </simpleType>
             </element>
             <element name="versions">
                 <complexType>
@@ -24,6 +29,82 @@
                     </sequence>
                 </complexType>
             </element>
+            <element ref="expiration-date"/>
         </sequence>
     </complexType>
+<!---->
+    <complexType name="caramel-candy-type">
+        <complexContent>
+            <extension base="candy-type">
+                <sequence>
+                    <element name="flavor" type="string"/>
+                    <element name="lollipop" type="boolean"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="chocolate-candy-type">
+        <complexContent>
+            <extension base="candy-type">
+                <sequence>
+                    <element ref="chocolate-type"/>
+                </sequence>
+                <attribute name="filling" type="string" use="optional" default="without"/>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <element name="candy" type="candy-type" abstract="true"/>
+
+    <element name="caramel-candy" type="caramel-candy-type" substitutionGroup="candy"/>
+
+    <element name="chocolate-candy" type="chocolate-candy-type" substitutionGroup="candy"/>
+<!--    -->
+
+    <element name="dosage">
+        <complexType>
+            <sequence>
+                <element name="value-of-dosage" type="double"/>
+                <element name="frequency-of-admission" type="int"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="package-of-medicine">
+        <complexType>
+            <sequence>
+                <element name="type" type="string"/>
+                <element name="count" type="int"/>
+                <element name="price" type="double"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="group">
+        <simpleType>
+            <restriction base="string">
+                <enumeration value="Antibiotic"/>
+                <enumeration value="Painkiller"/>
+                <enumeration value="Vitamin"/>
+                <enumeration value="Antiviral"/>
+            </restriction>
+        </simpleType>
+    </element>
+
+    <element name="expiration-date">
+        <simpleType>
+            <restriction base="gYearMonth">
+                <pattern value="2[0-9][0-9][0-9]-(0[1-9])|(1[0-2])"/>
+            </restriction>
+        </simpleType>
+    </element>
+
+    <element name="medicines">
+        <complexType>
+            <sequence>
+                <element ref="medicine" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
 </schema>

@@ -1,6 +1,7 @@
 package com.mitskevich.task2.entity;
 
 import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractMedicine {
@@ -46,19 +47,19 @@ public abstract class AbstractMedicine {
     }
 
     public List<String> getAnalogs() {
-        return analogs;
+        return new ArrayList<>(analogs);
     }
 
     public void setAnalogs(List<String> analogs) {
-        this.analogs = analogs;
+        this.analogs = analogs != null ? new ArrayList<>(analogs) : new ArrayList<>();
     }
 
     public List<Version> getVersions() {
-        return versions;
+        return new ArrayList<>(versions);
     }
 
     public void setVersions(List<Version> versions) {
-        this.versions = versions;
+        this.versions = versions != null ? new ArrayList<>(versions) : new ArrayList<>();
     }
 
     @Override
@@ -69,7 +70,6 @@ public abstract class AbstractMedicine {
         sb.append(", analogs=").append(analogs);
         sb.append(", versions=").append(versions);
         sb.append(", expirationDateOfMedicine=").append(expirationDateOfMedicine);
-        sb.append('}');
         return sb.toString();
     }
 }

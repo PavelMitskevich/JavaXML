@@ -1,20 +1,20 @@
 package com.mitskevich.task2.entity;
 
 public class Dosage {
-    private double medicineDosage;
+    private double valueOfDosage;
     private int frequencyOfAdmission;
 
-    public Dosage(double medicineDosage, int frequencyOfAdmission) {
-        this.medicineDosage = medicineDosage;
+    public Dosage(double valueOfDosage, int frequencyOfAdmission) {
+        this.valueOfDosage = valueOfDosage;
         this.frequencyOfAdmission = frequencyOfAdmission;
     }
 
-    public double getMedicineDosage() {
-        return medicineDosage;
+    public double getValueOfDosage() {
+        return valueOfDosage;
     }
 
-    public void setMedicineDosage(double medicineDosage) {
-        this.medicineDosage = medicineDosage;
+    public void setValueOfDosage(double valueOfDosage) {
+        this.valueOfDosage = valueOfDosage;
     }
 
     public int getFrequencyOfAdmission() {
@@ -28,7 +28,7 @@ public class Dosage {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Dosage{");
-        sb.append("medicineDosage=").append(medicineDosage);
+        sb.append("medicineDosage=").append(valueOfDosage);
         sb.append(", frequencyOfAdmission=").append(frequencyOfAdmission);
         sb.append('}');
         return sb.toString();

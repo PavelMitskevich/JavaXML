@@ -5,12 +5,14 @@ import java.util.List;
 
 public class Antiviral extends AbstractMedicine {
     private Group group = Group.ANTIVIRAL;
+    private String antiviralGroup;
 
     public Antiviral() {
     }
 
-    public Antiviral(String name, String pharm, List<String> analogs, List<Version> versions, YearMonth expirationDateOfMedicine) {
+    public Antiviral(String name, String pharm, List<String> analogs, List<Version> versions, YearMonth expirationDateOfMedicine, String antiviralGroup) {
         super(name, pharm, analogs, versions, expirationDateOfMedicine);
+        this.antiviralGroup = antiviralGroup;
     }
 
     @Override
@@ -67,10 +69,21 @@ public class Antiviral extends AbstractMedicine {
         super.setVersions(versions);
     }
 
+
+    public String getAntiviralGroup() {
+        return antiviralGroup;
+    }
+
+    public void setAntiviralGroup(String antiviralGroup) {
+        this.antiviralGroup = antiviralGroup;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder(String.valueOf(getGroup()));
         sb.append(super.toString());
+        sb.append(", antiviral group=").append(antiviralGroup);
+        sb.append('}');
         return sb.toString();
     }
 }
