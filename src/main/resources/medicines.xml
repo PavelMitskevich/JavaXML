@@ -2,30 +2,51 @@
 <medicines xmlns="http://www.example.org/medicines"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://www.example.org/medicines medicines.xsd">
-    <antibiotic>
-        <name>Ant</name>
-        <pharm>da</pharm>
-        <analogs>sad asd qwe</analogs>
+    <antibiotic name="Amoxicillin">
+        <pharm>Pharmtechnology</pharm>
+        <analogs>Suprax Amoxiclav</analogs>
         <versions>
             <version>
-                <execution>1</execution>
+                <execution>pill</execution>
                 <certificate>
-                    <registration-number>1</registration-number>
-                    <registering-organization>asddd</registering-organization>
+                    <registration-number>1234567</registration-number>
+                    <registering-organization>Belgroup</registering-organization>
                     <expiration-date>
                         <start-date>2010-01</start-date>
                         <end-date>2025-10</end-date>
                     </expiration-date>
-                    <dosage>
-                        <value-of-dosage>0.5</value-of-dosage>
-                        <frequency-of-admission>3</frequency-of-admission>
-                    </dosage>
                 </certificate>
-                <package-of-medicine>3</package-of-medicine>
-                <dosage>4</dosage>
+                <package-of-medicine>box</package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>2</frequency-of-admission>
+                </dosage>
             </version>
-                    </versions>
+        </versions>
         <expiration-date-of-medicine>2022-09</expiration-date-of-medicine>
-        <prescription>true</prescription>
+    </antibiotic>
+
+    <antibiotic name="Suprax">
+        <pharm>Pharmtechnology</pharm>
+        <analogs>Amoxicillin Amoxiclav</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>2357</registration-number>
+                    <registering-organization>Belgroup</registering-organization>
+                    <expiration-date>
+                        <start-date>2012-11</start-date>
+                        <end-date>2027-11</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>box</package-of-medicine>
+                <dosage>
+                    <value-of-dosage>0.5</value-of-dosage>
+                    <frequency-of-admission>3</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2024-01</expiration-date-of-medicine>
     </antibiotic>
 </medicines>

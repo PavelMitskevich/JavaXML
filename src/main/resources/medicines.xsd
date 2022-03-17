@@ -19,7 +19,6 @@
 
     <complexType name="Medicine">
         <sequence>
-            <element name="name" type="string"/>
             <element name="pharm" type="string"/>
             <element name="analogs" type="tns:stringList"/>
             <element name="versions">
@@ -31,14 +30,13 @@
             </element>
             <element name="expiration-date-of-medicine" type="gYearMonth"/>
         </sequence>
+        <attribute name="name" type="string" use="required"/>
     </complexType>
 
     <complexType name="Antibiotic">
         <complexContent>
             <extension base="tns:Medicine">
-                <sequence>
-                    <element name="prescription" type="boolean"/>
-                </sequence>
+                <attribute name="prescription" type="boolean" use="optional" default="false"/>
             </extension>
         </complexContent>
     </complexType>
@@ -78,7 +76,7 @@
             <element name="execution" type="string"/>
             <element name="certificate" type="tns:Certificate"/>
             <element name="package-of-medicine" type="string"/>
-            <element name="dosage" type="string"/>
+            <element name="dosage" type="tns:Dosage"/>
         </sequence>
     </complexType>
 
@@ -87,7 +85,6 @@
             <element name="registration-number" type="int"/>
             <element name="registering-organization" type="string"/>
             <element name="expiration-date" type="tns:Expiration-date"/>
-            <element name="dosage" type="tns:Dosage"/>
         </sequence>
     </complexType>
 
