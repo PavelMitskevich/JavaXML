@@ -1,5 +1,6 @@
-package com.mitskevich.task2.builder;
+package com.mitskevich.task2.validator;
 
+import com.mitskevich.task2.handler.MedicineErrorHandler;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;

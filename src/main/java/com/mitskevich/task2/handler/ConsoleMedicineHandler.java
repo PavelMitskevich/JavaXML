@@ -1,4 +1,4 @@
-package com.mitskevich.task2.builder;
+package com.mitskevich.task2.handler;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

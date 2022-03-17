@@ -10,11 +10,11 @@ public class CustomParserXmlException extends Exception{
         super(message);
     }
 
-    public CustomParserXmlException(String message, Throwable cause) {
-        super(message, cause);
+    public CustomParserXmlException(String message, Exception exception) {
+        super(message, exception);
     }
 
-    public CustomParserXmlException(Throwable cause) {
-        super(cause);
+    public CustomParserXmlException(Exception exception) {
+        super(exception);
     }
 }

@@ -1,5 +1,7 @@
 package com.mitskevich.task2.builder;
 
+import com.mitskevich.task2.handler.ConsoleMedicineHandler;
+import com.mitskevich.task2.handler.MedicineErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
