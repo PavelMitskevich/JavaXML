@@ -16,7 +16,11 @@
                         <end-date>2025-10</end-date>
                     </expiration-date>
                 </certificate>
-                <package-of-medicine>box</package-of-medicine>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>100</count>
+                    <price>9.5</price>
+                </package-of-medicine>
                 <dosage>
                     <value-of-dosage>1</value-of-dosage>
                     <frequency-of-admission>2</frequency-of-admission>
@@ -40,7 +44,11 @@
                         <end-date>2027-11</end-date>
                     </expiration-date>
                 </certificate>
-                <package-of-medicine>box</package-of-medicine>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>200</count>
+                    <price>199.3</price>
+                </package-of-medicine>
                 <dosage>
                     <value-of-dosage>0.5</value-of-dosage>
                     <frequency-of-admission>3</frequency-of-admission>

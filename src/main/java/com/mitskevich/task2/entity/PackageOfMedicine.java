@@ -5,6 +5,9 @@ public class PackageOfMedicine {
     private int count;
     private double price;
 
+    public PackageOfMedicine() {
+    }
+
     public PackageOfMedicine(String type, int count, double price) {
         this.type = type;
         this.count = count;

@@ -5,6 +5,9 @@ public class Certificate {
     private String registeringOrganization;
     private ExpirationDate expirationDate;
 
+    public Certificate() {
+    }
+
     public Certificate(int registrationNumber, ExpirationDate expirationDate, String registeringOrganization) {
         this.registrationNumber = registrationNumber;
         this.expirationDate = expirationDate;

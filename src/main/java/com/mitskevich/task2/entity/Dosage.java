@@ -4,6 +4,9 @@ public class Dosage {
     private double valueOfDosage;
     private int frequencyOfAdmission;
 
+    public Dosage() {
+    }
+
     public Dosage(double valueOfDosage, int frequencyOfAdmission) {
         this.valueOfDosage = valueOfDosage;
         this.frequencyOfAdmission = frequencyOfAdmission;

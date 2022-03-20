@@ -6,6 +6,9 @@ public class ExpirationDate {
     private YearMonth startDate;
     private YearMonth endDate;
 
+    public ExpirationDate() {
+    }
+
     public ExpirationDate(YearMonth startDate, YearMonth endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
