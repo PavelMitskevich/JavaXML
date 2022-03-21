@@ -2,7 +2,7 @@
 <medicines xmlns="http://www.example.org/medicines"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://www.example.org/medicines medicines.xsd">
-    <antibiotic name="Amoxicillin">
+    <antibiotic name="Amoxicillin" prescription="true">
         <pharm>Pharmtechnology</pharm>
         <analogs>Suprax Amoxiclav</analogs>
         <versions>
@@ -57,4 +57,33 @@
         </versions>
         <expiration-date-of-medicine>2024-01</expiration-date-of-medicine>
     </antibiotic>
+
+    <antiviral name="Kagocel" antiviral-group="inductors">
+        <pharm>Kag</pharm>
+        <analogs>Tiloron Cycloferon</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>1</registration-number>
+                    <registering-organization>OAO</registering-organization>
+                    <expiration-date>
+                        <start-date>2010-01</start-date>
+                        <end-date>2030-01</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>10</count>
+                    <price>18.65</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>3</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2024-05</expiration-date-of-medicine>
+    </antiviral>
+
 </medicines>

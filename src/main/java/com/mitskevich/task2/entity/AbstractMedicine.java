@@ -1,9 +1,12 @@
 package com.mitskevich.task2.entity;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement
 public abstract class AbstractMedicine {
     private String name;
     private String pharm;

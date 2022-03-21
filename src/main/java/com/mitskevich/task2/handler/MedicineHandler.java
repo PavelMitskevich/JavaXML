@@ -13,9 +13,9 @@ import java.util.*;
 public class MedicineHandler extends DefaultHandler {
     private static final Logger logger = LogManager.getLogger();
 
-    private Set<AbstractMedicine> medicines;
+    private final Set<AbstractMedicine> medicines;
     private MedicineXmlTag currentXmlTag;
-    private EnumSet<MedicineXmlTag> withText;
+    private final EnumSet<MedicineXmlTag> withText;
     private AbstractMedicine currentMedicine;
     private Antibiotic currentAntibiotic;
     private Antiviral currentAntiviral;
@@ -52,16 +52,24 @@ public class MedicineHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attrs) {
         if (ELEMENT_ANTIBIOTIC.equals(qName)) {
             currentAntibiotic = new Antibiotic();
-            currentAntibiotic.setPrescription(Boolean.parseBoolean(attrs.getValue(0)));
+            currentAntibiotic.setName(attrs.getValue(0));
+            currentAntibiotic.setPrescription(Boolean.parseBoolean(attrs.getValue(1)));
+            currentMedicine = currentAntibiotic;
         } else if (ELEMENT_ANTIVIRAL.equals(qName)) {
             currentAntiviral = new Antiviral();
-            currentAntiviral.setAntiviralGroup(attrs.getValue(0));
+            currentAntiviral.setName(attrs.getValue(0));
+            currentAntiviral.setAntiviralGroup(attrs.getValue(1));
+            currentMedicine = currentAntiviral;
         } else if (ELEMENT_PAINKILLER.equals(qName)) {
             currentPainkiller = new Painkiller();
-            currentPainkiller.setPower(attrs.getValue(0));
+            currentPainkiller.setName(attrs.getValue(0));
+            currentPainkiller.setPower(attrs.getValue(1));
+            currentMedicine = currentPainkiller;
         } else if (ELEMENT_VITAMIN.equals(qName)) {
             currentVitamin = new Vitamin();
-            currentVitamin.setTaste(attrs.getValue(0));
+            currentVitamin.setName(attrs.getValue(0));
+            currentVitamin.setTaste(attrs.getValue(1));
+            currentMedicine = currentVitamin;
         } else if (ELEMENT_VERSIONS.equals(qName)) {
             currentVersions = new ArrayList<>();
         } else if (ELEMENT_VERSION.equals(qName)) {
@@ -114,12 +122,11 @@ public class MedicineHandler extends DefaultHandler {
     @Override
     public void characters(char[] ch, int start, int length) {
         String data = new String(ch, start, length).strip();
-        currentMedicine = new Antibiotic();
         if (currentXmlTag != null) {
             switch (currentXmlTag) {
                 case NAME -> currentMedicine.setName(data);
                 case PHARM -> currentMedicine.setPharm(data);
-                case ANALOGS -> currentMedicine.setAnalogs(new ArrayList<>());
+                case ANALOGS -> currentMedicine.setAnalogs((Arrays.stream(data.split(" ")).toList()));
                 case EXECUTION -> currentVersion.setExecution(data);
                 case REGISTRATION_NUMBER -> currentCertificate.setRegistrationNumber(Integer.parseInt(data));
                 case REGISTERING_ORGANIZATION -> currentCertificate.setRegisteringOrganization(data);

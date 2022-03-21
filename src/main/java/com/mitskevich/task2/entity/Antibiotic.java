@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Antibiotic extends AbstractMedicine {
-    private Group group = Group.ANTIBIOTIC;
+    private final Group group = Group.ANTIBIOTIC;
     private boolean prescription;
 
     public Antibiotic() {

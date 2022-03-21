@@ -33,7 +33,7 @@ public enum MedicineXmlTag {
     POWER("power"),
     TASTE("taste");
 
-    private String value;
+    private final String value;
 
     MedicineXmlTag(String value) {
         this.value = value;
