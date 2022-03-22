@@ -72,7 +72,7 @@ public class MedicineDomBuilder {
                 medicines.add(medicine);
             }
         } catch (SAXException | IOException e) {
-            logger.error(e.getMessage() +" build set medicines");
+            logger.error(e.getMessage() + " build set medicines");
         }
     }
 
