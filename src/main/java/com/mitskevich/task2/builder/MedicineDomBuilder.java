@@ -13,6 +13,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.IOException;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class MedicineDomBuilder {
     public void buildSetMedicines(String fileName) {
         Document document;
         try {
-            document = documentBuilder.parse(fileName);
+            document = documentBuilder.parse(new File(fileName));
 //            document.getDocumentElement().normalize();
             Element root = document.getDocumentElement();
             NodeList antibioticList = root.getElementsByTagName(MedicineXmlTag.ANTIBIOTIC.getValue());
@@ -71,7 +72,7 @@ public class MedicineDomBuilder {
                 medicines.add(medicine);
             }
         } catch (SAXException | IOException e) {
-            logger.error(e.getMessage());
+            logger.error(e.getMessage() +" build set medicines");
         }
     }
 
@@ -104,17 +105,15 @@ public class MedicineDomBuilder {
     }
 
 
-    private AbstractMedicine buildMedicine(AbstractMedicine abstractMedicine, Element medicineElement) {
+    private void buildMedicine(AbstractMedicine abstractMedicine, Element medicineElement) {
         abstractMedicine.setPharm(getElementTextContent(medicineElement, MedicineXmlTag.PHARM.getValue()));
         abstractMedicine.setAnalogs(getAnalogsContent(medicineElement, MedicineXmlTag.ANALOGS.getValue()));
-        abstractMedicine.setVersions(buildVersionsList(medicineElement, MedicineXmlTag.ANALOGS.getValue()));
+        abstractMedicine.setVersions(buildVersionsList(medicineElement));
         abstractMedicine.setExpirationDateOfMedicine(getElementYearMonthContent(medicineElement, MedicineXmlTag.EXPIRATION_DATE_OF_MEDICINE.getValue()));
-        return abstractMedicine;
     }
 
 
     private List<String> getAnalogsContent(Element element, String value) {
-//        value = MedicineXmlTag.ANALOGS.getValue();
         NodeList nodeList = element.getElementsByTagName(value);
         Element analogsNode = (Element) nodeList.item(0);
         List<String> analogsList = new ArrayList<>();
@@ -124,7 +123,7 @@ public class MedicineDomBuilder {
         return analogsList;
     }
 
-    private List<Version> buildVersionsList(Element element, String value) {
+    private List<Version> buildVersionsList(Element element) {
         NodeList nodeList = element.getElementsByTagName(MedicineXmlTag.VERSIONS.getValue());
         Element versionsNode = (Element) nodeList.item(0);
         NodeList versionNodeList = versionsNode.getElementsByTagName(MedicineXmlTag.VERSION.getValue());
@@ -137,30 +136,32 @@ public class MedicineDomBuilder {
 
     private Version buildVersion(Node item) {
         Version version = new Version();
-        Element element = (Element) item;
-        version.setExecution(getElementTextContent(element, MedicineXmlTag.EXECUTION.getValue()));
-        version.setCertificate(buildCertificate(element, MedicineXmlTag.CERTIFICATE.getValue()));
-        version.setPackageOfMedicine(buildPackageOfMedicine(element, MedicineXmlTag.PACKAGE_OF_MEDICINE.getValue()));
-        version.setDosage(buildDosage(element, MedicineXmlTag.DOSAGE.getValue()));
+        Element versionElement = (Element) item;
+        version.setExecution(getElementTextContent(versionElement, MedicineXmlTag.EXECUTION.getValue()));
+        version.setCertificate(buildCertificate(versionElement));
+        version.setPackageOfMedicine(buildPackageOfMedicine(versionElement));
+        version.setDosage(buildDosage(versionElement));
         return version;
     }
 
-    private Certificate buildCertificate(Element element, String value) {
+    private Certificate buildCertificate(Element element) {
+        NodeList certificateList = element.getElementsByTagName(MedicineXmlTag.CERTIFICATE.getValue());
+        Element certificateElement = (Element) certificateList.item(0);
         Certificate certificate = new Certificate();
-        certificate.setRegistrationNumber(getElementIntContent(element, MedicineXmlTag.REGISTRATION_NUMBER.getValue()));
-        certificate.setRegisteringOrganization(getElementTextContent(element, MedicineXmlTag.REGISTERING_ORGANIZATION.getValue()));
-        certificate.setExpirationDate(buildExpirationDate(element, MedicineXmlTag.EXPIRATION_DATE.getValue()));
+        certificate.setRegistrationNumber(getElementIntContent(certificateElement, MedicineXmlTag.REGISTRATION_NUMBER.getValue()));
+        certificate.setRegisteringOrganization(getElementTextContent(certificateElement, MedicineXmlTag.REGISTERING_ORGANIZATION.getValue()));
+        certificate.setExpirationDate(buildExpirationDate(certificateElement));
         return certificate;
     }
 
-    private ExpirationDate buildExpirationDate(Element element, String value) {
+    private ExpirationDate buildExpirationDate(Element element) {
         ExpirationDate expirationDate = new ExpirationDate();
         expirationDate.setStartDate(getElementYearMonthContent(element, MedicineXmlTag.START_DATE.getValue()));
         expirationDate.setEndDate(getElementYearMonthContent(element, MedicineXmlTag.END_DATE.getValue()));
         return expirationDate;
     }
 
-    private PackageOfMedicine buildPackageOfMedicine(Element element, String value) {
+    private PackageOfMedicine buildPackageOfMedicine(Element element) {
         PackageOfMedicine packageOfMedicine = new PackageOfMedicine();
         packageOfMedicine.setType(getElementTextContent(element, MedicineXmlTag.TYPE.getValue()));
         packageOfMedicine.setCount(getElementIntContent(element, MedicineXmlTag.TYPE.getValue()));
@@ -168,7 +169,7 @@ public class MedicineDomBuilder {
         return packageOfMedicine;
     }
 
-    private Dosage buildDosage(Element element, String value) {
+    private Dosage buildDosage(Element element) {
         Dosage dosage = new Dosage();
         dosage.setValueOfDosage(getElementDoubleContent(element, MedicineXmlTag.VALUE_OF_DOSAGE.getValue()));
         dosage.setFrequencyOfAdmission(getElementIntContent(element, MedicineXmlTag.FREQUENCY_OF_ADMISSION.getValue()));
@@ -186,8 +187,8 @@ public class MedicineDomBuilder {
     }
 
     private double getElementDoubleContent(Element element, String elementName) {
-        String stringInt = getElementTextContent(element, elementName);
-        return Double.parseDouble((stringInt));
+        String stringDouble = getElementTextContent(element, elementName);
+        return Double.parseDouble((stringDouble));
     }
 
     private String getElementTextContent(Element element, String elementName) {
