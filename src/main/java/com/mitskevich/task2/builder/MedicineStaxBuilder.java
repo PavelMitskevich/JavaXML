@@ -152,7 +152,7 @@ public class MedicineStaxBuilder {
                 case XMLStreamConstants.END_ELEMENT -> {
                     name = reader.getLocalName();
                     tag = MedicineXmlTag.getMedicineXmlTag(name);
-                    if (tag == MedicineXmlTag.VERSIONS) {
+                    if (tag == MedicineXmlTag.VERSION) {
                         return version;
                     }
                 }

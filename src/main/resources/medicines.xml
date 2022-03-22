@@ -46,7 +46,7 @@
                 </certificate>
                 <package-of-medicine>
                     <type>box</type>
-                    <count>200</count>
+                    <count>20</count>
                     <price>199.3</price>
                 </package-of-medicine>
                 <dosage>
@@ -56,6 +56,62 @@
             </version>
         </versions>
         <expiration-date-of-medicine>2024-01</expiration-date-of-medicine>
+    </antibiotic>
+
+    <antibiotic name="Zinnat" prescription="true">
+        <pharm>Glaxo Operations</pharm>
+        <analogs>Megasef Bioracef</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>357891</registration-number>
+                    <registering-organization>Glaxo</registering-organization>
+                    <expiration-date>
+                        <start-date>2018-06</start-date>
+                        <end-date>2035-06</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>10</count>
+                    <price>16.52</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>3</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2025-02</expiration-date-of-medicine>
+    </antibiotic>
+
+    <antibiotic name="Azithromycin">
+        <pharm>Farmland</pharm>
+        <analogs>Sumamed Azicar</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>15987</registration-number>
+                    <registering-organization>Pharma product</registering-organization>
+                    <expiration-date>
+                        <start-date>2018-05</start-date>
+                        <end-date>2028-05</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>6</count>
+                    <price>17.68</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>0.5</value-of-dosage>
+                    <frequency-of-admission>1</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2023-11</expiration-date-of-medicine>
     </antibiotic>
 
     <antiviral name="Kagocel" antiviral-group="inductors">
@@ -85,5 +141,333 @@
         </versions>
         <expiration-date-of-medicine>2024-05</expiration-date-of-medicine>
     </antiviral>
+
+    <antiviral name="Alfaron" antiviral-group="interferon">
+        <pharm>Alfa</pharm>
+        <analogs>Grippferon Ingaron Viferon</analogs>
+        <versions>
+            <version>
+                <execution>bottle</execution>
+                <certificate>
+                    <registration-number>753216</registration-number>
+                    <registering-organization>BBAD</registering-organization>
+                    <expiration-date>
+                        <start-date>1999-09</start-date>
+                        <end-date>2039-09</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>5</count>
+                    <price>53.4</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>1</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2022-12</expiration-date-of-medicine>
+    </antiviral>
+
+    <antiviral name="Oseltamivir" antiviral-group="inhibitor">
+        <pharm>Ovir</pharm>
+        <analogs>Zanamivir</analogs>
+        <versions>
+            <version>
+                <execution>capsule</execution>
+                <certificate>
+                    <registration-number>654321</registration-number>
+                    <registering-organization>IZVARINO</registering-organization>
+                    <expiration-date>
+                        <start-date>2010-05</start-date>
+                        <end-date>2030-05</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>10</count>
+                    <price>25.49</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>2</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2025-02</expiration-date-of-medicine>
+    </antiviral>
+
+    <antiviral name="Anaferon">
+        <pharm>Aron</pharm>
+        <analogs>Ergoferon</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>123468</registration-number>
+                    <registering-organization>Feron</registering-organization>
+                    <expiration-date>
+                        <start-date>2015-05</start-date>
+                        <end-date>2025-05</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>20</count>
+                    <price>10.01</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>4</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2024-03</expiration-date-of-medicine>
+    </antiviral>
+
+    <painkiller name="Voltaren" power="medium">
+        <pharm>ASD</pharm>
+        <analogs>Bioran Diclac Diclogen</analogs>
+        <versions>
+            <version>
+                <execution>gel</execution>
+                <certificate>
+                    <registration-number>852147</registration-number>
+                    <registering-organization>VOLAT</registering-organization>
+                    <expiration-date>
+                        <start-date>2010-01</start-date>
+                        <end-date>2030-01</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>tube</type>
+                    <count>1</count>
+                    <price>8.6</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>0.02</value-of-dosage>
+                    <frequency-of-admission>3</frequency-of-admission>
+                </dosage>
+            </version>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>8527147</registration-number>
+                    <registering-organization>VOLAT</registering-organization>
+                    <expiration-date>
+                        <start-date>2010-01</start-date>
+                        <end-date>2030-01</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>20</count>
+                    <price>12.64</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>0.5</value-of-dosage>
+                    <frequency-of-admission>3</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2025-02</expiration-date-of-medicine>
+    </painkiller>
+
+    <painkiller name="Aertal">
+        <pharm>AERT</pharm>
+        <analogs>Aceclofenac</analogs>
+        <versions>
+            <version>
+                <execution>gel</execution>
+                <certificate>
+                    <registration-number>987655</registration-number>
+                    <registering-organization>Tal</registering-organization>
+                    <expiration-date>
+                        <start-date>2010-01</start-date>
+                        <end-date>2030-01</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>tube</type>
+                    <count>1</count>
+                    <price>11.23</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>0.02</value-of-dosage>
+                    <frequency-of-admission>2</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2022-10</expiration-date-of-medicine>
+    </painkiller>
+
+    <painkiller name="Analgin" power="strong">
+        <pharm>Ben</pharm>
+        <analogs>Baralgin</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>81359</registration-number>
+                    <registering-organization>Gin</registering-organization>
+                    <expiration-date>
+                        <start-date>2010-01</start-date>
+                        <end-date>2030-01</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>20</count>
+                    <price>10.21</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>2</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2022-10</expiration-date-of-medicine>
+    </painkiller>
+
+    <painkiller name="Arcoxia">
+        <pharm>AERT</pharm>
+        <analogs>Bixitor Dolocox Etoricoxib-SZ</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>8135889</registration-number>
+                    <registering-organization>Xia</registering-organization>
+                    <expiration-date>
+                        <start-date>2010-01</start-date>
+                        <end-date>2030-01</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>20</count>
+                    <price>22.11</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>3</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2022-10</expiration-date-of-medicine>
+    </painkiller>
+
+    <vitamin name="Angiovit">
+        <pharm>Ang</pharm>
+        <analogs>Pentovit</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>951847</registration-number>
+                    <registering-organization>Vit</registering-organization>
+                    <expiration-date>
+                        <start-date>2011-01</start-date>
+                        <end-date>2031-01</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>20</count>
+                    <price>24.14</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>1</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2023-10</expiration-date-of-medicine>
+    </vitamin>
+
+    <vitamin name="Naturetto" taste="orange">
+        <pharm>Nat</pharm>
+        <analogs>Vitamin-C</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>951623</registration-number>
+                    <registering-organization>Vit</registering-organization>
+                    <expiration-date>
+                        <start-date>2011-01</start-date>
+                        <end-date>2031-01</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>10</count>
+                    <price>10.14</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>1</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2023-10</expiration-date-of-medicine>
+    </vitamin>
+
+    <vitamin name="Multivitamins" taste="strawberry">
+        <pharm>Mult</pharm>
+        <analogs>Vita</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>951847</registration-number>
+                    <registering-organization>Vit</registering-organization>
+                    <expiration-date>
+                        <start-date>2011-01</start-date>
+                        <end-date>2031-01</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>100</count>
+                    <price>64.14</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>2</value-of-dosage>
+                    <frequency-of-admission>1</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2023-10</expiration-date-of-medicine>
+    </vitamin>
+
+    <vitamin name="D3-Ultra" taste="banana">
+        <pharm>Ultra</pharm>
+        <analogs>AWR</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>159263</registration-number>
+                    <registering-organization>Vit</registering-organization>
+                    <expiration-date>
+                        <start-date>2011-01</start-date>
+                        <end-date>2031-01</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>20</count>
+                    <price>15.64</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>1</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2025-04</expiration-date-of-medicine>
+    </vitamin>
 
 </medicines>

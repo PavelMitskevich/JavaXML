@@ -61,7 +61,7 @@ public class MedicineDomBuilder {
                 medicines.add(medicine);
             }
             for (int i = 0; i < painkillerList.getLength(); i++) {
-                Element painkillerElement = (Element) antibioticList.item(i);
+                Element painkillerElement = (Element) painkillerList.item(i);
                 AbstractMedicine medicine = buildPainkiller(painkillerElement);
                 medicines.add(medicine);
             }

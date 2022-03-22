@@ -52,7 +52,7 @@
     <complexType name="Painkiller">
         <complexContent>
             <extension base="tns:Medicine">
-                <attribute name="power" type="string" use="optional"/>
+                <attribute name="power" type="string" use="optional" default="lite"/>
             </extension>
         </complexContent>
     </complexType>

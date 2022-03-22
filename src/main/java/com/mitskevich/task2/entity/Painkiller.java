@@ -26,7 +26,7 @@ public class Painkiller extends AbstractMedicine {
     }
 
     public Group getGroup() {
-        return Group.valueOf(group.getName());
+        return group;
     }
 
     @Override
