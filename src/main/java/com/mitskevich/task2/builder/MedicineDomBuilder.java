@@ -1,7 +1,7 @@
 package com.mitskevich.task2.builder;
 
-import com.mitskevich.task2.entity.AbstractMedicine;
-import com.mitskevich.task2.entity.Antibiotic;
+import com.mitskevich.task2.entity.*;
+import com.mitskevich.task2.handler.MedicineXmlTag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -14,11 +14,15 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class MedicineDomBuilder {
     private static final Logger logger = LogManager.getLogger();
+
     private Set<AbstractMedicine> medicines;
     private DocumentBuilder documentBuilder;
 
@@ -40,11 +44,30 @@ public class MedicineDomBuilder {
         Document document;
         try {
             document = documentBuilder.parse(fileName);
+//            document.getDocumentElement().normalize();
             Element root = document.getDocumentElement();
-            NodeList medicinesList = root.getElementsByTagName("antibiotic");
-            for (int i = 0; i < medicinesList.getLength(); i++) {
-                Element medicineElement = (Element) medicinesList.item(i);
-                AbstractMedicine medicine = buildMedicine(medicineElement);
+            NodeList antibioticList = root.getElementsByTagName(MedicineXmlTag.ANTIBIOTIC.getValue());
+            NodeList antiviralList = root.getElementsByTagName(MedicineXmlTag.ANTIVIRAL.getValue());
+            NodeList painkillerList = root.getElementsByTagName(MedicineXmlTag.PAINKILLER.getValue());
+            NodeList vitaminList = root.getElementsByTagName(MedicineXmlTag.VITAMIN.getValue());
+            for (int i = 0; i < antibioticList.getLength(); i++) {
+                Element antibioticElement = (Element) antibioticList.item(i);
+                AbstractMedicine medicine = buildAntibiotic(antibioticElement);
+                medicines.add(medicine);
+            }
+            for (int i = 0; i < antiviralList.getLength(); i++) {
+                Element antiviralElement = (Element) antiviralList.item(i);
+                AbstractMedicine medicine = buildAntiviral(antiviralElement);
+                medicines.add(medicine);
+            }
+            for (int i = 0; i < painkillerList.getLength(); i++) {
+                Element painkillerElement = (Element) antibioticList.item(i);
+                AbstractMedicine medicine = buildPainkiller(painkillerElement);
+                medicines.add(medicine);
+            }
+            for (int i = 0; i < vitaminList.getLength(); i++) {
+                Element vitaminElement = (Element) vitaminList.item(i);
+                AbstractMedicine medicine = buildVitamin(vitaminElement);
                 medicines.add(medicine);
             }
         } catch (SAXException | IOException e) {
@@ -52,14 +75,132 @@ public class MedicineDomBuilder {
         }
     }
 
-    private AbstractMedicine buildMedicine(Element medicineElement) {
-        AbstractMedicine abstractMedicine = new Antibiotic();
-        abstractMedicine.setPharm(medicineElement.getAttribute("pharm"));
+    private AbstractMedicine buildAntibiotic(Element antibioticElement) {
+        Antibiotic antibiotic = new Antibiotic();
+        buildMedicine(antibiotic, antibioticElement);
+        antibiotic.setPrescription(Boolean.parseBoolean(antibioticElement.getAttribute(MedicineXmlTag.PRESCRIPTION.getValue())));
+        return antibiotic;
+    }
+
+    private AbstractMedicine buildAntiviral(Element antiviralElement) {
+        Antiviral antiviral = new Antiviral();
+        buildMedicine(antiviral, antiviralElement);
+        antiviral.setAntiviralGroup(antiviralElement.getAttribute(MedicineXmlTag.ANTIVIRAL_GROUP.getValue()));
+        return antiviral;
+    }
+
+    private AbstractMedicine buildPainkiller(Element painkillerElement) {
+        Painkiller painkiller = new Painkiller();
+        buildMedicine(painkiller, painkillerElement);
+        painkiller.setPower(painkillerElement.getAttribute(MedicineXmlTag.POWER.getValue()));
+        return painkiller;
+    }
+
+    private AbstractMedicine buildVitamin(Element vitaminElement) {
+        Vitamin vitamin = new Vitamin();
+        buildMedicine(vitamin, vitaminElement);
+        vitamin.setTaste(vitaminElement.getAttribute(MedicineXmlTag.TASTE.getValue()));
+        return vitamin;
+    }
 
 
-
-
+    private AbstractMedicine buildMedicine(AbstractMedicine abstractMedicine, Element medicineElement) {
+        abstractMedicine.setPharm(getElementTextContent(medicineElement, MedicineXmlTag.PHARM.getValue()));
+        abstractMedicine.setAnalogs(getAnalogsContent(medicineElement, MedicineXmlTag.ANALOGS.getValue()));
+        abstractMedicine.setVersions(buildVersionsList(medicineElement, MedicineXmlTag.ANALOGS.getValue()));
+        abstractMedicine.setExpirationDateOfMedicine(getElementYearMonthContent(medicineElement, MedicineXmlTag.EXPIRATION_DATE_OF_MEDICINE.getValue()));
         return abstractMedicine;
+    }
+
+
+    private List<String> getAnalogsContent(Element element, String value) {
+//        value = MedicineXmlTag.ANALOGS.getValue();
+        NodeList nodeList = element.getElementsByTagName(value);
+        Element analogsNode = (Element) nodeList.item(0);
+        List<String> analogsList = new ArrayList<>();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            analogsList.add(analogsNode.getTextContent());
+        }
+        return analogsList;
+    }
+
+    private List<Version> buildVersionsList(Element element, String value) {
+        NodeList nodeList = element.getElementsByTagName(MedicineXmlTag.VERSIONS.getValue());
+        Element versionsNode = (Element) nodeList.item(0);
+        NodeList versionNodeList = versionsNode.getElementsByTagName(MedicineXmlTag.VERSION.getValue());
+        List<Version> versions = new ArrayList<>();
+        for (int i = 0; i < versionNodeList.getLength(); i++) {
+            versions.add(buildVersion(versionNodeList.item(i)));
+        }
+        return versions;
+    }
+
+    private Version buildVersion(Node item) {
+        Version version = new Version();
+        Element element = (Element) item;
+        version.setExecution(getElementTextContent(element, MedicineXmlTag.EXECUTION.getValue()));
+        version.setCertificate(buildCertificate(element, MedicineXmlTag.CERTIFICATE.getValue()));
+        version.setPackageOfMedicine(buildPackageOfMedicine(element, MedicineXmlTag.PACKAGE_OF_MEDICINE.getValue()));
+        version.setDosage(buildDosage(element, MedicineXmlTag.DOSAGE.getValue()));
+        return version;
+    }
+
+    private Certificate buildCertificate(Element element, String value) {
+        Certificate certificate = new Certificate();
+        certificate.setRegistrationNumber(getElementIntContent(element, MedicineXmlTag.REGISTRATION_NUMBER.getValue()));
+        certificate.setRegisteringOrganization(getElementTextContent(element, MedicineXmlTag.REGISTERING_ORGANIZATION.getValue()));
+        certificate.setExpirationDate(buildExpirationDate(element, MedicineXmlTag.EXPIRATION_DATE.getValue()));
+        return certificate;
+    }
+
+    private ExpirationDate buildExpirationDate(Element element, String value) {
+        ExpirationDate expirationDate = new ExpirationDate();
+        expirationDate.setStartDate(getElementYearMonthContent(element, MedicineXmlTag.START_DATE.getValue()));
+        expirationDate.setEndDate(getElementYearMonthContent(element, MedicineXmlTag.END_DATE.getValue()));
+        return expirationDate;
+    }
+
+    private PackageOfMedicine buildPackageOfMedicine(Element element, String value) {
+        PackageOfMedicine packageOfMedicine = new PackageOfMedicine();
+        packageOfMedicine.setType(getElementTextContent(element, MedicineXmlTag.TYPE.getValue()));
+        packageOfMedicine.setCount(getElementIntContent(element, MedicineXmlTag.TYPE.getValue()));
+        packageOfMedicine.setPrice(getElementDoubleContent(element, MedicineXmlTag.TYPE.getValue()));
+        return packageOfMedicine;
+    }
+
+    private Dosage buildDosage(Element element, String value) {
+        Dosage dosage = new Dosage();
+        dosage.setValueOfDosage(getElementDoubleContent(element, MedicineXmlTag.VALUE_OF_DOSAGE.getValue()));
+        dosage.setFrequencyOfAdmission(getElementIntContent(element, MedicineXmlTag.FREQUENCY_OF_ADMISSION.getValue()));
+        return dosage;
+    }
+
+    private YearMonth getElementYearMonthContent(Element element, String elementName) {
+        String yearMonthString = getElementTextContent(element, elementName);
+        return YearMonth.parse(yearMonthString);
+    }
+
+    private int getElementIntContent(Element element, String elementName) {
+        String stringInt = getElementTextContent(element, elementName);
+        return Integer.parseInt(stringInt);
+    }
+
+    private double getElementDoubleContent(Element element, String elementName) {
+        String stringInt = getElementTextContent(element, elementName);
+        return Double.parseDouble((stringInt));
+    }
+
+    private String getElementTextContent(Element element, String elementName) {
+        NodeList nodeList = element.getElementsByTagName(elementName);
+        Node node = nodeList.item(0);
+        return node.getTextContent();
+    }
+
+    public static void main(String[] args) {
+        MedicineDomBuilder domBuilder = new MedicineDomBuilder();
+        domBuilder.buildSetMedicines("C:\\Users\\Иван\\IdeaProjects\\JavaXML\\src\\main\\resources\\medicines.xml");
+        domBuilder.getMedicines()
+                .forEach(System.out::println);
     }
 }
 
