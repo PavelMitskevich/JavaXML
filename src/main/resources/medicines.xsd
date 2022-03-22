@@ -93,7 +93,7 @@
         <sequence>
             <element name="type" type="string"/>
             <element name="count" type="int"/>
-            <element name="price" type="double"/>
+            <element name="price" type="decimal"/>
         </sequence>
     </complexType>
 

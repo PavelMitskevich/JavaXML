@@ -1,13 +1,16 @@
 package com.mitskevich.task2.entity;
 
+import com.mitskevich.task2.util.IdGenerator;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
+import java.io.Serializable;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement
-public abstract class AbstractMedicine {
+public abstract class AbstractMedicine implements Serializable {
+    private int id;
     private String name;
     private String pharm;
     private List<String> analogs;
@@ -15,9 +18,11 @@ public abstract class AbstractMedicine {
     private YearMonth expirationDateOfMedicine;
 
     public AbstractMedicine() {
+        id = IdGenerator.generateId();
     }
 
     public AbstractMedicine(String name, String pharm, List<String> analogs, List<Version> versions, YearMonth expirationDateOfMedicine) {
+        id = IdGenerator.generateId();
         this.name = name;
         this.pharm = pharm;
         this.analogs = analogs;
@@ -69,6 +74,7 @@ public abstract class AbstractMedicine {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("{name='").append(name).append('\'');
+        sb.append(", id='").append(id).append('\'');
         sb.append(", pharm='").append(pharm).append('\'');
         sb.append(", analogs=").append(analogs);
         sb.append(", versions=").append(versions);

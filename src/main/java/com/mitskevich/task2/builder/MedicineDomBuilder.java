@@ -1,4 +1,4 @@
-package com.mitskevich.task2.parser;
+package com.mitskevich.task2.builder;
 
 import com.mitskevich.task2.entity.AbstractMedicine;
 import com.mitskevich.task2.entity.Antibiotic;
