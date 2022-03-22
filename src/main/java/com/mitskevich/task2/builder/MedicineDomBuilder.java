@@ -79,6 +79,7 @@ public class MedicineDomBuilder {
     private AbstractMedicine buildAntibiotic(Element antibioticElement) {
         Antibiotic antibiotic = new Antibiotic();
         buildMedicine(antibiotic, antibioticElement);
+        antibiotic.setName(antibioticElement.getAttribute(MedicineXmlTag.NAME.getValue()));
         antibiotic.setPrescription(Boolean.parseBoolean(antibioticElement.getAttribute(MedicineXmlTag.PRESCRIPTION.getValue())));
         return antibiotic;
     }
@@ -86,6 +87,7 @@ public class MedicineDomBuilder {
     private AbstractMedicine buildAntiviral(Element antiviralElement) {
         Antiviral antiviral = new Antiviral();
         buildMedicine(antiviral, antiviralElement);
+        antiviral.setName(antiviralElement.getAttribute(MedicineXmlTag.NAME.getValue()));
         antiviral.setAntiviralGroup(antiviralElement.getAttribute(MedicineXmlTag.ANTIVIRAL_GROUP.getValue()));
         return antiviral;
     }
@@ -93,6 +95,7 @@ public class MedicineDomBuilder {
     private AbstractMedicine buildPainkiller(Element painkillerElement) {
         Painkiller painkiller = new Painkiller();
         buildMedicine(painkiller, painkillerElement);
+        painkiller.setName(painkillerElement.getAttribute(MedicineXmlTag.NAME.getValue()));
         painkiller.setPower(painkillerElement.getAttribute(MedicineXmlTag.POWER.getValue()));
         return painkiller;
     }
@@ -100,6 +103,7 @@ public class MedicineDomBuilder {
     private AbstractMedicine buildVitamin(Element vitaminElement) {
         Vitamin vitamin = new Vitamin();
         buildMedicine(vitamin, vitaminElement);
+        vitamin.setName(vitaminElement.getAttribute(MedicineXmlTag.NAME.getValue()));
         vitamin.setTaste(vitaminElement.getAttribute(MedicineXmlTag.TASTE.getValue()));
         return vitamin;
     }
@@ -164,8 +168,8 @@ public class MedicineDomBuilder {
     private PackageOfMedicine buildPackageOfMedicine(Element element) {
         PackageOfMedicine packageOfMedicine = new PackageOfMedicine();
         packageOfMedicine.setType(getElementTextContent(element, MedicineXmlTag.TYPE.getValue()));
-        packageOfMedicine.setCount(getElementIntContent(element, MedicineXmlTag.TYPE.getValue()));
-        packageOfMedicine.setPrice(getElementDoubleContent(element, MedicineXmlTag.TYPE.getValue()));
+        packageOfMedicine.setCount(getElementIntContent(element, MedicineXmlTag.COUNT.getValue()));
+        packageOfMedicine.setPrice(getElementDoubleContent(element, MedicineXmlTag.PRICE.getValue()));
         return packageOfMedicine;
     }
 
