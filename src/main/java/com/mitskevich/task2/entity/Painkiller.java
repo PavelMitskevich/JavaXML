@@ -78,6 +78,32 @@ public class Painkiller extends AbstractMedicine {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Painkiller that = (Painkiller) o;
+        if (group != that.group) {
+            return false;
+        }
+        return power != null ? power.equals(that.power) : that.power == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (group != null ? group.hashCode() : 0);
+        result = 31 * result + (power != null ? power.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder(String.valueOf(getGroup()));
         sb.append(super.toString());

@@ -39,6 +39,32 @@ public class Certificate {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Certificate that = (Certificate) o;
+        if (registrationNumber != that.registrationNumber) {
+            return false;
+        }
+        if (registeringOrganization != null ? !registeringOrganization.equals(that.registeringOrganization) : that.registeringOrganization != null) {
+            return false;
+        }
+        return expirationDate != null ? expirationDate.equals(that.expirationDate) : that.expirationDate == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = registrationNumber;
+        result = 31 * result + (registeringOrganization != null ? registeringOrganization.hashCode() : 0);
+        result = 31 * result + (expirationDate != null ? expirationDate.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Certificate{");
         sb.append("regNumber='").append(registrationNumber).append('\'');

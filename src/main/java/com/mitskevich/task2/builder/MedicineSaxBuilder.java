@@ -30,7 +30,7 @@ public class MedicineSaxBuilder {
             SAXParser parser = factory.newSAXParser();
             reader = parser.getXMLReader();
         } catch (ParserConfigurationException | SAXException e) {
-            logger.error(e.getMessage());
+            logger.error("MedicineSaxBuilder is failed. ");
         }
         reader.setContentHandler(medicineHandler);
     }
@@ -48,7 +48,6 @@ public class MedicineSaxBuilder {
         medicines = medicineHandler.getMedicines();
         logger.info("Set of medicines build. " + medicineHandler);
     }
-
 
     public static void main(String[] args) {
         try {

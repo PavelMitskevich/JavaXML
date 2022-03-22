@@ -76,6 +76,33 @@ public class Vitamin extends AbstractMedicine {
     public void setTaste(String taste) {
         this.taste = taste;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Vitamin vitamin = (Vitamin) o;
+        if (group != vitamin.group) {
+            return false;
+        }
+        return taste != null ? taste.equals(vitamin.taste) : vitamin.taste == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (group != null ? group.hashCode() : 0);
+        result = 31 * result + (taste != null ? taste.hashCode() : 0);
+        return result;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder(String.valueOf(getGroup()));

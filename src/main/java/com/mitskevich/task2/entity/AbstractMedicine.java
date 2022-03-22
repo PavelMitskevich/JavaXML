@@ -71,6 +71,44 @@ public abstract class AbstractMedicine implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AbstractMedicine that = (AbstractMedicine) o;
+        if (id != that.id) {
+            return false;
+        }
+        if (name != null ? !name.equals(that.name) : that.name != null) {
+            return false;
+        }
+        if (pharm != null ? !pharm.equals(that.pharm) : that.pharm != null) {
+            return false;
+        }
+        if (analogs != null ? !analogs.equals(that.analogs) : that.analogs != null) {
+            return false;
+        }
+        if (versions != null ? !versions.equals(that.versions) : that.versions != null) {
+            return false;
+        }
+        return expirationDateOfMedicine != null ? expirationDateOfMedicine.equals(that.expirationDateOfMedicine) : that.expirationDateOfMedicine == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (pharm != null ? pharm.hashCode() : 0);
+        result = 31 * result + (analogs != null ? analogs.hashCode() : 0);
+        result = 31 * result + (versions != null ? versions.hashCode() : 0);
+        result = 31 * result + (expirationDateOfMedicine != null ? expirationDateOfMedicine.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("{name='").append(name).append('\'');

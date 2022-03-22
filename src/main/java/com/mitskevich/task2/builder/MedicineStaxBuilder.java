@@ -40,7 +40,6 @@ public class MedicineStaxBuilder {
                 if (type == XMLStreamConstants.START_ELEMENT) {
                     name = reader.getLocalName();
                     if (name.equals(MedicineXmlTag.ANTIBIOTIC.getValue())) {
-
                         AbstractMedicine abstractMedicine = buildMedicine(new Antibiotic(), reader);
                         medicines.add(abstractMedicine);
                     } else if (name.equals(MedicineXmlTag.ANTIVIRAL.getValue())) {

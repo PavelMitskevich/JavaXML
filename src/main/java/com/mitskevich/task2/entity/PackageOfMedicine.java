@@ -39,6 +39,35 @@ public class PackageOfMedicine {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PackageOfMedicine that = (PackageOfMedicine) o;
+        if (count != that.count) {
+            return false;
+        }
+        if (Double.compare(that.price, price) != 0) {
+            return false;
+        }
+        return type != null ? type.equals(that.type) : that.type == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = type != null ? type.hashCode() : 0;
+        result = 31 * result + count;
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PackageOfMedicine{");
         sb.append("type='").append(type).append('\'');

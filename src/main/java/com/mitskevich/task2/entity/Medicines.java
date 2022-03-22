@@ -10,10 +10,6 @@ import java.util.Set;
 public class Medicines {
     Set<AbstractMedicine> abstractMedicines;
 
-    public Set<AbstractMedicine> getCandies() {
-        return abstractMedicines;
-    }
-
     @XmlElementWrapper
     @XmlElements({
             @XmlElement(type = Antibiotic.class, name = "antibiotic"),
@@ -21,7 +17,12 @@ public class Medicines {
             @XmlElement(type = Painkiller.class, name = "painkiller"),
             @XmlElement(type = Vitamin.class, name = "vitamin")
     })
-    public void setCandies(Set<AbstractMedicine> abstractMedicines) {
+
+    public Set<AbstractMedicine> getAbstractMedicines() {
+        return abstractMedicines;
+    }
+
+    public void setAbstractMedicines(Set<AbstractMedicine> abstractMedicines) {
         this.abstractMedicines = abstractMedicines;
     }
 
@@ -30,6 +31,5 @@ public class Medicines {
             this.abstractMedicines = new HashSet<>();
         }
         this.abstractMedicines.add(product);
-
     }
 }

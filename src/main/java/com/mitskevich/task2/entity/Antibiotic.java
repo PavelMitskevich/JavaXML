@@ -1,8 +1,6 @@
 package com.mitskevich.task2.entity;
 
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Antibiotic extends AbstractMedicine {
@@ -80,22 +78,37 @@ public class Antibiotic extends AbstractMedicine {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Antibiotic that = (Antibiotic) o;
+        if (prescription != that.prescription) {
+            return false;
+        }
+        return group == that.group;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (group != null ? group.hashCode() : 0);
+        result = 31 * result + (prescription ? 1 : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder(String.valueOf(getGroup()));
         sb.append(super.toString());
         sb.append(", prescription=").append(prescription);
         sb.append('}');
         return sb.toString();
-    }
-
-    public static void main(String[] args) {
-        Antibiotic antibiotic = new Antibiotic();
-        ExpirationDate expirationDate = new ExpirationDate(YearMonth.of(2021,3),YearMonth.of(2023,3));
-        Certificate certificate = new Certificate(1234, expirationDate, "Company");
-        PackageOfMedicine packageOfMedicine = new PackageOfMedicine("bottle", 100, 15.96);
-        Dosage dosage = new Dosage(0.5, 3);
-        Version version = new Version("drops", certificate, packageOfMedicine, dosage);
-        antibiotic.setVersions(new ArrayList<>(Collections.singleton(version)));
-        System.out.println(antibiotic);
     }
 }

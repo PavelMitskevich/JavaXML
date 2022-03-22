@@ -33,7 +33,7 @@ public class MedicineDomBuilder {
         try {
             documentBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            logger.error(e.getMessage());
+            logger.error("MedicineDomBuilder is not created. ", e);
         }
     }
 
@@ -45,7 +45,6 @@ public class MedicineDomBuilder {
         Document document;
         try {
             document = documentBuilder.parse(new File(fileName));
-//            document.getDocumentElement().normalize();
             Element root = document.getDocumentElement();
             NodeList antibioticList = root.getElementsByTagName(MedicineXmlTag.ANTIBIOTIC.getValue());
             NodeList antiviralList = root.getElementsByTagName(MedicineXmlTag.ANTIVIRAL.getValue());
@@ -72,7 +71,7 @@ public class MedicineDomBuilder {
                 medicines.add(medicine);
             }
         } catch (SAXException | IOException e) {
-            logger.error(e.getMessage() + " build set medicines");
+            logger.error("Build set medicines is failed. ", e);
         }
     }
 
@@ -208,4 +207,3 @@ public class MedicineDomBuilder {
                 .forEach(System.out::println);
     }
 }
-

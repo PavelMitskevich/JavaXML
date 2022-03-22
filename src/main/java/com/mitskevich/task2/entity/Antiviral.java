@@ -79,6 +79,32 @@ public class Antiviral extends AbstractMedicine {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        Antiviral antiviral = (Antiviral) o;
+        if (group != antiviral.group) {
+            return false;
+        }
+        return antiviralGroup != null ? antiviralGroup.equals(antiviral.antiviralGroup) : antiviral.antiviralGroup == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (group != null ? group.hashCode() : 0);
+        result = 31 * result + (antiviralGroup != null ? antiviralGroup.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder(String.valueOf(getGroup()));
         sb.append(super.toString());
