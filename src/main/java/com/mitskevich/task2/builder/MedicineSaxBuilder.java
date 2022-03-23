@@ -48,15 +48,4 @@ public class MedicineSaxBuilder {
         medicines = medicineHandler.getMedicines();
         logger.info("Set of medicines build. " + medicineHandler);
     }
-
-    public static void main(String[] args) {
-        try {
-            MedicineSaxBuilder saxBuilder = new MedicineSaxBuilder();
-            saxBuilder.buildSetMedicines("C:\\Users\\Иван\\IdeaProjects\\JavaXML\\src\\main\\resources\\medicines.xml");
-            saxBuilder.getMedicines()
-                    .forEach(System.out::println);
-        } catch (CustomParserXmlException e) {
-            e.printStackTrace();
-        }
-    }
 }

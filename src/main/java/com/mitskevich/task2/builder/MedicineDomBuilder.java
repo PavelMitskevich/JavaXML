@@ -199,11 +199,4 @@ public class MedicineDomBuilder {
         Node node = nodeList.item(0);
         return node.getTextContent();
     }
-
-    public static void main(String[] args) {
-        MedicineDomBuilder domBuilder = new MedicineDomBuilder();
-        domBuilder.buildSetMedicines("C:\\Users\\Иван\\IdeaProjects\\JavaXML\\src\\main\\resources\\medicines.xml");
-        domBuilder.getMedicines()
-                .forEach(System.out::println);
-    }
 }

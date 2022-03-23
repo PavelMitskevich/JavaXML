@@ -279,11 +279,4 @@ public class MedicineStaxBuilder {
         }
         return text;
     }
-
-    public static void main(String[] args) {
-        MedicineStaxBuilder staxBuilder = new MedicineStaxBuilder();
-        staxBuilder.buildSetMedicines("C:\\Users\\Иван\\IdeaProjects\\JavaXML\\src\\main\\resources\\medicines.xml");
-        staxBuilder.getMedicines()
-                .forEach(System.out::println);
-    }
 }

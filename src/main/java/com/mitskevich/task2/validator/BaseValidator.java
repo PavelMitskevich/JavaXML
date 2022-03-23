@@ -42,15 +42,4 @@ public class BaseValidator {
             return false;
         }
     }
-
-    public static void main(String[] args) {
-        String fileName = "C:\\Users\\Иван\\IdeaProjects\\JavaXML\\src\\main\\resources\\medicines.xml";
-        String schemaName = "C:\\Users\\Иван\\IdeaProjects\\JavaXML\\src\\main\\resources\\medicines.xsd";
-        BaseValidator baseValidator = new BaseValidator();
-        try {
-            baseValidator.isXmlValidXsd(fileName, schemaName);
-        } catch (CustomParserXmlException e) {
-            e.printStackTrace();
-        }
-    }
 }

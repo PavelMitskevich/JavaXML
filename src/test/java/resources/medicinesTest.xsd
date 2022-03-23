@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/medicines"
+        xmlns:tns="http://www.example.org/medicines"
+        elementFormDefault="qualified">
+
+    <element name="medicines">
+        <complexType>
+            <sequence>
+                <element ref="tns:medicine" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="medicine" type="tns:Medicine" abstract="true"/>
+    <element name="antibiotic" type="tns:Antibiotic" substitutionGroup="tns:medicine"/>
+    <element name="antiviral" type="tns:Antiviral" substitutionGroup="tns:medicine"/>
+    <element name="painkiller" type="tns:Painkiller" substitutionGroup="tns:medicine"/>
+    <element name="vitamin" type="tns:Vitamin" substitutionGroup="tns:medicine"/>
+
+    <complexType name="Medicine">
+        <sequence>
+            <element name="pharm" type="string"/>
+            <element name="analogs" type="tns:stringList"/>
+            <element name="versions">
+                <complexType>
+                    <sequence>
+                        <element name="version" type="tns:Version" maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="expiration-date-of-medicine" type="gYearMonth"/>
+        </sequence>
+        <attribute name="name" type="string" use="required"/>
+    </complexType>
+
+    <complexType name="Antibiotic">
+        <complexContent>
+            <extension base="tns:Medicine">
+                <attribute name="prescription" type="boolean" use="optional" default="false"/>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Antiviral">
+        <complexContent>
+            <extension base="tns:Medicine">
+                <attribute name="antiviral-group" type="string" use="optional"/>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Painkiller">
+        <complexContent>
+            <extension base="tns:Medicine">
+                <attribute name="power" type="string" use="optional" default="lite"/>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Vitamin">
+        <complexContent>
+            <extension base="tns:Medicine">
+                <attribute name="taste" type="string" use="optional"/>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Version">
+        <sequence>
+            <element name="execution" type="string"/>
+            <element name="certificate" type="tns:Certificate"/>
+            <element name="package-of-medicine" type="tns:Package-of-medicine"/>
+            <element name="dosage" type="tns:Dosage"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Certificate">
+        <sequence>
+            <element name="registration-number" type="int"/>
+            <element name="registering-organization" type="string"/>
+            <element name="expiration-date" type="tns:Expiration-date"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Expiration-date">
+        <sequence>
+            <element name="start-date" type="gYearMonth"/>
+            <element name="end-date" type="gYearMonth"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Package-of-medicine">
+        <sequence>
+            <element name="type" type="string"/>
+            <element name="count" type="int"/>
+            <element name="price" type="decimal"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Dosage">
+        <sequence>
+            <element name="value-of-dosage" type="double"/>
+            <element name="frequency-of-admission" type="int"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="stringList">
+        <list itemType="string"/>
+    </simpleType>
+
+</schema>

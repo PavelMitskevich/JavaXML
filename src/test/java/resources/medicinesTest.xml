@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<medicines xmlns="http://www.example.org/medicines"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.example.org/medicines medicinesTest.xsd">
+    <antibiotic name="Amoxicillin" prescription="true">
+        <pharm>Pharmtechnology</pharm>
+        <analogs>Suprax Amoxiclav</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>1234567</registration-number>
+                    <registering-organization>Belgroup</registering-organization>
+                    <expiration-date>
+                        <start-date>2010-01</start-date>
+                        <end-date>2025-10</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>100</count>
+                    <price>9.5</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>2</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2022-09</expiration-date-of-medicine>
+    </antibiotic>
+
+    <painkiller name="Analgin" power="strong">
+        <pharm>Ben</pharm>
+        <analogs>Baralgin</analogs>
+        <versions>
+            <version>
+                <execution>pill</execution>
+                <certificate>
+                    <registration-number>81359</registration-number>
+                    <registering-organization>Gin</registering-organization>
+                    <expiration-date>
+                        <start-date>2010-01</start-date>
+                        <end-date>2030-01</end-date>
+                    </expiration-date>
+                </certificate>
+                <package-of-medicine>
+                    <type>box</type>
+                    <count>20</count>
+                    <price>10.21</price>
+                </package-of-medicine>
+                <dosage>
+                    <value-of-dosage>1</value-of-dosage>
+                    <frequency-of-admission>2</frequency-of-admission>
+                </dosage>
+            </version>
+        </versions>
+        <expiration-date-of-medicine>2022-10</expiration-date-of-medicine>
+    </painkiller>
+
+</medicines>
